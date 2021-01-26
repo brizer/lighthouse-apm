@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { createGlobalStyle } from "styled-components";
 import { normalize } from "styled-normalize";
-import 'antd/dist/antd.css';
-import App from "./components/App";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import "antd/dist/antd.css";
+import App from "./pages/App";
 
 const GlobalStyle = createGlobalStyle`
  ${normalize}
@@ -15,10 +16,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const client: ApolloClient<any> = new ApolloClient({
+  cache: new InMemoryCache(),
+  uri: "http://localhost:4000/graphql",
+});
+
 ReactDOM.render(
   <React.Fragment>
     <GlobalStyle />
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.Fragment>,
   document.getElementById("root")
 );
