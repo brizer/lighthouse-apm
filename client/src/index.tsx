@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
 const client: ApolloClient<any> = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "http://localhost:4000/graphql",
+  uri: "http://121.5.51.208:4000/graphql",
 });
 
 ReactDOM.render(
